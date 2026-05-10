@@ -1,0 +1,19 @@
+{
+  "name": "claude-spec-sync",
+  "description": "Slash commands that keep a Notion functional spec and Figma wireframes in sync via Claude Code.",
+  "owner": {
+    "name": "YujunOh",
+    "url": "https://github.com/YujunOh"
+  },
+  "plugins": [
+    {
+      "name": "spec-sync",
+      "description": "Bidirectional Notion <-> Figma spec/wireframe sync slash commands. Audit drift, generate spec drafts from wireframes, scaffold wireframes from specs, and create standardized PRD pages with one command.",
+      "source": {
+        "source": "github",
+        "repo": "YujunOh/claude-spec-sync"
+      },
+      "homepage": "https://github.com/YujunOh/claude-spec-sync"
+    }
+  ]
+}

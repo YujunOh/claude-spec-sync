@@ -1,0 +1,11 @@
+{
+  "name": "spec-sync",
+  "version": "0.1.0",
+  "description": "Bidirectional Notion <-> Figma spec/wireframe sync slash commands for Claude Code. Pairs with the official Notion and Figma MCP servers.",
+  "author": {
+    "name": "YujunOh",
+    "url": "https://github.com/YujunOh"
+  },
+  "repository": "https://github.com/YujunOh/claude-spec-sync",
+  "license": "MIT"
+}
