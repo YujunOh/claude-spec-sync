@@ -1,5 +1,10 @@
 # claude-spec-sync
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-7B61FF)](https://docs.claude.com/en/docs/claude-code/plugins)
+[![Notion MCP](https://img.shields.io/badge/Notion-MCP-000000?logo=notion&logoColor=white)](https://developers.notion.com/guides/mcp/get-started-with-mcp)
+[![Figma MCP](https://img.shields.io/badge/Figma-MCP-F24E1E?logo=figma&logoColor=white)](https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Figma-MCP-server)
+
 Bidirectional **Notion ↔ Figma** spec/wireframe sync for Claude Code.
 
 A small Claude Code plugin that ships four slash commands wrapping the official
@@ -7,6 +12,8 @@ A small Claude Code plugin that ships four slash commands wrapping the official
 [Figma MCP](https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Figma-MCP-server)
 servers — so a PM can keep a functional spec in Notion and wireframes in Figma
 in sync without exporting PNGs/CSVs to a chat tool.
+
+> _Demo GIF coming soon — record `/spec-new` → `/wireframe-from-spec` → `/spec-audit` and drop into `docs/demo.gif`._
 
 ## What it does
 
@@ -90,13 +97,25 @@ cp claude-spec-sync/commands/*.md ~/.claude/commands/
 
 ## Workflow
 
-```
-       ┌──────────────────┐                  ┌──────────────────┐
-       │  Notion (spec)   │ ◀── /spec-audit ─▶│  Figma (wires)  │
-       │                  │                   │                  │
-       │  /spec-new       │ ── /wireframe-from-spec ──▶          │
-       │                  │ ◀── /spec-from-wireframe ──          │
-       └──────────────────┘                  └──────────────────┘
+```mermaid
+flowchart LR
+    PM([PM])
+    subgraph Notion[Notion · Functional Spec]
+        N1[/spec-new/]
+        N2[States table]
+        N3[Acceptance]
+    end
+    subgraph Figma[Figma · Wireframes]
+        F1[Frame: empty]
+        F2[Frame: loading]
+        F3[Frame: error]
+        F4[Frame: success]
+    end
+
+    PM -->|/spec-new| Notion
+    Notion -->|/wireframe-from-spec| Figma
+    Figma -->|/spec-from-wireframe| Notion
+    Notion <-->|/spec-audit · diff only| Figma
 ```
 
 - **Greenfield**: `/spec-new` → fill it in → `/wireframe-from-spec` → review on canvas.
